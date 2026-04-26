@@ -1,94 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Tooltip System</title>
-
-<style>
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #0b1220;
-  font-family: Arial, sans-serif;
-}
-
-/* Button */
-.btn {
-  padding: 14px 22px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-}
-
-/* Tooltip */
-.tooltip {
-  position: absolute;
-  background: #111827;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: 0.2s ease;
-  pointer-events: none;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-}
-
-.tooltip.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Arrow */
-.tooltip::after {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: #111827;
-  transform: rotate(45deg);
-  top: -5px;
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-}
-</style>
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<button class="btn" id="btn">Hover me</button>
-<div class="tooltip" id="tooltip">Enter your trading amount</div>
+<div class="center">
+  <div class="card">
+    <h2>Login</h2>
+    
+    <input placeholder="Email" style="width:100%;padding:10px;margin-top:10px;">
+    <input placeholder="Password" type="password" style="width:100%;padding:10px;margin-top:10px;">
 
-<script>
-const btn = document.getElementById("btn");
-const tooltip = document.getElementById("tooltip");
-
-btn.addEventListener("mouseenter", () => {
-  const rect = btn.getBoundingClientRect();
-
-  tooltip.style.left = rect.left + rect.width / 2 + "px";
-  tooltip.style.top = rect.top - 40 + "px";
-
-  tooltip.classList.add("show");
-});
-
-btn.addEventListener("mouseleave", () => {
-  tooltip.classList.remove("show");
-});
-</script>
+    <a href="dashboard.html">
+      <button class="btn green">Login</button>
+    </a>
+  </div>
+</div>
 
 </body>
 </html>
