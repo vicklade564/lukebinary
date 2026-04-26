@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Result</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="center">
+  <div class="card">
+    <h2 id="resultText">Calculating...</h2>
+
+    <p id="detail"></p>
+
+    <a href="trade.html">
+      <button class="btn green">Trade Again</button>
+    </a>
+  </div>
+</div>
+
+<script>
+let choice = localStorage.getItem("choice");
+let amount = localStorage.getItem("amount");
+
+let number = Math.floor(Math.random() * 10);
+let isEven = number % 2 === 0;
+
+let win = (choice === "even" && isEven) || (choice === "odd" && !isEven);
+
+document.getElementById("resultText").innerText = win ? "YOU WIN 🎉" : "YOU LOSE ❌";
+
+document.getElementById("detail").innerText =
+"Number: " + number + " | Your choice: " + choice + " | Amount: $" + amount;
+</script>
+
+</body>
+</html>
