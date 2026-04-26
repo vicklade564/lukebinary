@@ -1,108 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tooltip UI</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tooltip System</title>
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #0f172a;
-      font-family: Arial, sans-serif;
-      color: white;
-    }
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0b1220;
+  font-family: Arial, sans-serif;
+}
 
-    .container {
-      text-align: center;
-    }
+/* Button */
+.btn {
+  padding: 14px 22px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
-    /* Button */
-    .tooltip-trigger {
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      border: none;
-      padding: 12px 20px;
-      border-radius: 10px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+.btn:hover {
+  transform: scale(1.05);
+}
 
-    .tooltip-trigger:hover {
-      transform: scale(1.05);
-    }
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  background: #111827;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.2s ease;
+  pointer-events: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
 
-    /* Tooltip */
-    .tooltip {
-      position: absolute;
-      background: #1e293b;
-      color: white;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 12px;
-      white-space: nowrap;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.2s ease;
-      pointer-events: none;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    }
+.tooltip.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    .tooltip.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Arrow */
-    .tooltip::after {
-      content: "";
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: #1e293b;
-      transform: rotate(45deg);
-      top: -5px;
-      left: 50%;
-      transform: translateX(-50%) rotate(45deg);
-    }
-
-  </style>
+/* Arrow */
+.tooltip::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #111827;
+  transform: rotate(45deg);
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
-    <button class="tooltip-trigger" id="btn">
-      Hover me
-    </button>
+<button class="btn" id="btn">Hover me</button>
+<div class="tooltip" id="tooltip">Enter your trading amount</div>
 
-    <div class="tooltip" id="tooltip">
-      Enter your trading amount here
-    </div>
-  </div>
+<script>
+const btn = document.getElementById("btn");
+const tooltip = document.getElementById("tooltip");
 
-  <script>
-    const button = document.getElementById("btn");
-    const tooltip = document.getElementById("tooltip");
+btn.addEventListener("mouseenter", () => {
+  const rect = btn.getBoundingClientRect();
 
-    button.addEventListener("mouseenter", () => {
-      const rect = button.getBoundingClientRect();
+  tooltip.style.left = rect.left + rect.width / 2 + "px";
+  tooltip.style.top = rect.top - 40 + "px";
 
-      tooltip.style.left = rect.left + rect.width / 2 + "px";
-      tooltip.style.top = rect.top - 40 + "px";
+  tooltip.classList.add("show");
+});
 
-      tooltip.classList.add("show");
-    });
-
-    button.addEventListener("mouseleave", () => {
-      tooltip.classList.remove("show");
-    });
-  </script>
+btn.addEventListener("mouseleave", () => {
+  tooltip.classList.remove("show");
+});
+</script>
 
 </body>
 </html>
